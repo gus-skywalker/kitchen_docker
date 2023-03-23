@@ -21,6 +21,7 @@ services:
 
   mongo-express:
     image: mongo-express:latest
+    container_name: "mongo-express"
     restart: unless-stopped
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
@@ -47,6 +48,7 @@ services:
 
   zookeeper:
     image: wurstmeister/zookeeper
+    container_name: "zookeeper"
     ports:
       - 2181:2181
     networks:
@@ -54,6 +56,7 @@ services:
 
   kafka:
     image: wurstmeister/kafka
+    container_name: "kafka"
     depends_on:
       - zookeeper
     environment:
@@ -67,6 +70,7 @@ services:
       - 9092:9092
     networks:
       - web
+
 networks:
   web:
     driver: bridge
